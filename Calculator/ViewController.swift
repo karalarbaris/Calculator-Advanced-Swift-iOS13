@@ -12,22 +12,32 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var displayLabel: UILabel!
     
-    var isFinishedTypingNumber: Bool = true
+    private var isFinishedTypingNumber: Bool = true
+    
+    private var displayValue: Double {
+        get {
+            guard let number = Double(displayLabel.text!) else {
+                fatalError("Can not convert to double")
+            }
+            return number
+        }
+        
+        set {
+            displayLabel.text = String(newValue)
+        }
+    }
     
     @IBAction func calcButtonPressed(_ sender: UIButton) {
         
         //What should happen when a non-number button is pressed
         isFinishedTypingNumber = true
         
-        guard let number = Double(displayLabel.text!) else {
-            fatalError("Can not convert to double")
-        }
         
         if let calcMethod = sender.currentTitle {
             if calcMethod == "+/-" {
-                displayLabel.text = String(number * -1)
+                displayValue *= -1
             } else if calcMethod == "%"{
-                displayLabel.text = String(number / 100)
+                displayValue /= 100
             } else if calcMethod == "AC" {
                 displayLabel.text = "0"
             }
