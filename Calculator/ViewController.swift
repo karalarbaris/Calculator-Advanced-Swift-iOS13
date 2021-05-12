@@ -46,6 +46,11 @@ class ViewController: UIViewController {
                 displayLabel.text = numValue
                 isFinishedTypingNumber = false
             } else {
+                
+                if numValue == "." && displayLabel.text!.contains(".") {
+                    return
+                }
+                
                 displayLabel.text = displayLabel.text! + numValue
             }
         }
