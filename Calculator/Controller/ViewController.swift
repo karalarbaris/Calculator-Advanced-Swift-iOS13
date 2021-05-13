@@ -38,10 +38,13 @@ class ViewController: UIViewController {
         
         if let calcMethod = sender.currentTitle {
            
-            guard let result = calculator.calculateWith(calcMethod: calcMethod) else {
-                fatalError("The result of the calculation is nil")
+//            guard let result = calculator.calculateWith(calcMethod: calcMethod) else {
+//                fatalError("The result of the calculation is nil")
+//            }
+            if let result = calculator.calculateWith(calcMethod: calcMethod) {
+                displayValue = result
             }
-            displayValue = result
+            
 
             
         
